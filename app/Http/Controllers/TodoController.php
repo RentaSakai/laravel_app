@@ -57,7 +57,7 @@ class TodoController extends Controller //extendsでコントローラーの継�
         $input = $request->all(); //全入力を連想配列取得
         $input['user_id'] = Auth::id();
         $this->todo->fill($input)->save(); //$fillableにしたtitleカラムを指定する fill($input)の返り値はインスタンスされたtodo ave()でデータを更新 save()の返り値はtrue
-        return redirect()->to('todo');  //Redirectorインスタンスが返り値 to()でパスを指定 URIはtodoで methodはgetをcontentsプロパティの中の<a>で指定している
+        return redirect()->route('todo.index');  //Redirectorインスタンスが返り値 to()でパスを指定 URIはtodoで methodはgetをcontentsプロパティの中の<a>で指定している
     }
 
     /**
@@ -95,7 +95,7 @@ class TodoController extends Controller //extendsでコントローラーの継�
         $input = $request->all(); //Requestインスタンスのall()メソッドでformからの入力を連想配列取得  メソッド　トークン　タイトルを取得
         //all()でformからの入力情報を取得して,find()でfindで主キーに当てはまるものをDBから値を取得を行なっている fillで余分なカラムを排除　saveで保存
         $this->todo->find($id)->fill($input)->save(); //findで主キーに当てはまるものをDBから値を取得を行なっている fillでfillableのカラムの確認　 save()の返り値はtrue
-        return redirect()->to('todo');   //Redirectorインスタンスが返り値 to()でパスを指定
+        return redirect()->route('todo.index');   //Redirectorインスタンスが返り値 to()でパスを指定
     }
 
     /**
@@ -107,7 +107,7 @@ class TodoController extends Controller //extendsでコントローラーの継�
     public function destroy($id)
     {
         $this->todo->find($id)->delete();  //パラメーターで渡ってきた値をもとにDBから値を取得を行なっている　delte()で複数削除 delete()の返り値は影響を受けたレコードの件数
-        return redirect()->to('todo'); //Redirectorインスタンスが返り値 to()でパスを指定
+        return redirect()->route('todo.index'); //Redirectorインスタンスが返り値 to()でパスを指定
     }
 
     // public function hoge()
