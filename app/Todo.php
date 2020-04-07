@@ -3,9 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Todo extends Model  //modelを継承しているのでDB操作が行える
 {
+    use SoftDeletes;
     protected $fillable = [  //fillとセット
         'title',
         'user_id'
@@ -15,5 +16,5 @@ class Todo extends Model  //modelを継承しているのでDB操作が行える
     {
         return $this->where('user_id', $id)->get();
     }
-
+    protected $dates = ['deleted_at'];
 }

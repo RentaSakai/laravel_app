@@ -8,7 +8,9 @@ use Auth;  //ログインしているユーザーをAuth::id()という形で取
 
 class TodoController extends Controller //extendsでコントローラーの継承をしている
 {
+
     private $todo;  //privateはclass内でしか使えない変数 $instanceClassがはいる
+    protected $dates = ['deleted_at'];
 
     public function __construct(Todo $instanceClass) //インスタンス作成をする ublicはどこからでもアクセスできる
     {
@@ -107,6 +109,7 @@ class TodoController extends Controller //extendsでコントローラーの継�
     public function destroy($id)
     {
         $this->todo->find($id)->delete();  //パラメーターで渡ってきた値をもとにDBから値を取得を行なっている　delte()で複数削除 delete()の返り値は影響を受けたレコードの件数
+
         return redirect()->route('todo.index'); //Redirectorインスタンスが返り値 to()でパスを指定
     }
 

@@ -23,7 +23,7 @@ class LoginController extends Controller
     use AuthenticatesUsers; //これを書くことによってtraitのメソッドがここで定義されているのと同じになる　class内で使用できる
 
     protected $maxAttempts = 2;  //AuthenticatesUsersトレイトをuseしていてそのなかこれらのThrottlesLoginsトレイトがuseされているので、LoginControllerにてメンバ変数$maxAttemptを設定することで、ログイン試行回数を設定することができる
-    /**
+    /*
      * Where to redirect users after login.
      *
      * @var string
